@@ -23,13 +23,23 @@ struct ContentView: View {
                 .onDelete(perform: deleteToDo)
             }
             .navigationTitle("To-Do List")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        let newToDo = ToDo(id: UUID(), title: "new", isCompleted: false)
+                        viewModel.addOrUpdateToDo(newToDo)
+                    } label: {
+                        Image(systemName: "plus")
+                    }
+                }
+            }
         }
     }
 
     private func deleteToDo(at offsets: IndexSet) {
         offsets.forEach { index in
             let todo = viewModel.todos[index]
-//            viewModel.deleteToDo(todo)
+            viewModel.deleteTodo(todo)
         }
     }
 
@@ -42,7 +52,3 @@ struct ContentView: View {
         }
     }
 }
-
-//#Preview {
-//    ContentView(viewModel: ToDoViewModel(interactor: ))
-//}
