@@ -8,7 +8,7 @@
 import Foundation
 
 // アプリケーションで使用されるエンティティやデータモデル
-struct ToDo: Identifiable {
+struct ToDo: Identifiable, Equatable {
     let id: UUID
     var title: String
     var isCompleted: Bool
